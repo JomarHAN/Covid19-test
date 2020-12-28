@@ -1,10 +1,14 @@
-import React from 'react';
-import './App.css';
-import CovidMap from './CovidMap';
+import React from "react";
+import "./App.css";
+import CovidMap from "./CovidMap";
+import Legend from "./Legend";
 
 function App() {
   return (
-    <CovidMap/>
+    <div>
+      <CovidMap />
+      <Legend />
+    </div>
   );
 }
 

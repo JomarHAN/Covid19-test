@@ -1,0 +1,13 @@
+.leaflet-container{
+    background-color: rgb(127, 229, 255);
+}
+
+.globe__btn{
+    position: absolute!important;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px!important;
+    padding: 5px!important;
+    background-color: white!important;
+    border-radius: 99%!important;
+} 
