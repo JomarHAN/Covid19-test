@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import listCoordinate from '../datajson/countries-coordinates.json'
 
 export const countrySlice = createSlice({
   name: 'country',
   initialState: {
-    countryLatLng: [0, 0],
+    countryLatLng: [30, 0],
     countryZoom: 2,
     countriesCovid: []
   },
@@ -12,7 +11,7 @@ export const countrySlice = createSlice({
 
     setCountryLatLng: (state, action) => {
       if (action.payload.isGlobe) {
-        state.countryLatLng = [0, 0];
+        state.countryLatLng = [30, 0];
         state.countryZoom = 2
       } else {
         state.countryLatLng = action.payload.countryLatLng;

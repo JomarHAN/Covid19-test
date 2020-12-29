@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import CovidMap from "./CovidMap";
-import Legend from "./Legend";
+import TableInfo from "./TableInfo";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <CovidMap />
-      <Legend />
+      <TableInfo />
     </div>
   );
 }

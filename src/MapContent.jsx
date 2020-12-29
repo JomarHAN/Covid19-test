@@ -19,23 +19,33 @@ function MapContent({ center, zoom, countries }) {
   };
 
   const onEachCountry = (country, layer) => {
-    const countryName = country.properties.country;
-    const cases = country.properties.cases;
+    const countryInfo = country.properties;
+
+    const countryFlag = countryInfo.countryInfo?.flag;
 
     layer.bindPopup(`
-        <h1>${countryName}</h1>
-        <p>${numeral(cases).format("0,0")}</p>
+      <img src=${countryFlag} alt=""/>
+      <h1>${countryInfo.country}</h1>
+      <p>Cases: <strong>${numeral(countryInfo.cases).format("0,0")}</strong></p>
+      <p>Recovered: <strong>${numeral(countryInfo.recovered).format(
+        "0,0"
+      )}</strong></p>
+      <p>Deaths: <strong>${numeral(countryInfo.deaths).format(
+        "0,0"
+      )}</strong></p>
     `);
   };
 
   const clickEventCountry = ({ layer }) => {
     const coordinates = layer.feature.properties.countryInfo;
-    countryDispatch(
-      setCountryLatLng({
-        countryLatLng: [coordinates.lat, coordinates.long],
-        zoom: 4,
-      })
-    );
+    if (coordinates) {
+      countryDispatch(
+        setCountryLatLng({
+          countryLatLng: [coordinates.lat, coordinates.long],
+          zoom: 4,
+        })
+      );
+    }
   };
 
   const FlyTo = () => {
@@ -44,10 +54,8 @@ function MapContent({ center, zoom, countries }) {
     return null;
   };
 
-  console.log(countries);
-
   return (
-    <div style={{ height: "100%", position: "relative" }}>
+    <div style={{ height: "95vh", position: "relative" }} className="app__map">
       <MapContainer
         style={{ height: "100%" }}
         center={center}

@@ -1,13 +1,41 @@
+.app__container{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.7;
+
+}
+
 .leaflet-container{
     background-color: rgb(127, 229, 255);
 }
 
 .globe__btn{
-    position: absolute!important;
-    bottom: 20px;
-    right: 20px;
+    position: fixed!important;
+    bottom: 60px;
+    left: 20px;
     font-size: 30px!important;
     padding: 5px!important;
     background-color: white!important;
     border-radius: 99%!important;
+    z-index: 10!important;
 } 
+
+
+/* --MapContent CSS */
+.leaflet-popup-content{
+    width: 200px!important;
+    object-fit: contain;
+}
+
+.leaflet-popup-content img{
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.leaflet-popup-content p{
+    margin: 10px 0;
+    font-size: medium;
+}
+
+

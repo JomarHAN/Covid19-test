@@ -1,0 +1,36 @@
+.cardType{
+    flex: 0.3;
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: 0.2s ease-in-out;
+}
+
+.cardType:hover{
+    transform: translate(-4px , -4px);
+    box-shadow:  1px 1px 3px 0;
+}
+
+
+.cardType p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: red;
+    font-weight: 600!important;
+    font-size: 25px!important;
+}
+
+.cardType small strong{
+    font-size: 13px!important;
+    font-weight: 700!important;
+}
+
+.cardType-green{
+    color: green;
+}
+
+.cardType-purple{
+    color: purple;
+}

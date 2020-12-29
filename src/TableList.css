@@ -1,0 +1,26 @@
+.tableList{
+    text-align: center;
+    margin-top: 20px;
+    
+    color: #6a5d5d;
+    background-color: white;
+    height: 400px;
+    overflow: scroll;
+    height: 400px;
+}
+
+
+
+/* .tableList tr{
+    display: flex;
+    justify-content: space-between;
+}
+*/
+.tableList td, .tableList th{
+    padding: 0.5em;
+    border: none;
+} 
+
+.tableList tr:nth-of-type(odd){
+    background-color: #f5f6fa;
+}
