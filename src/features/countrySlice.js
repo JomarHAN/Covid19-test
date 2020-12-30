@@ -3,31 +3,31 @@ import { createSlice } from '@reduxjs/toolkit';
 export const countrySlice = createSlice({
   name: 'country',
   initialState: {
-    countryLatLng: [30, 0],
-    countryZoom: 2,
-    countriesCovid: []
+    countryLatLng: [20, 0],
+    countryZoom: 1.5,
+    countryCovid: "worldwide"
   },
   reducers: {
 
     setCountryLatLng: (state, action) => {
       if (action.payload.isGlobe) {
-        state.countryLatLng = [30, 0];
-        state.countryZoom = 2
+        state.countryLatLng = [20, 0];
+        state.countryZoom = 1.5
       } else {
         state.countryLatLng = action.payload.countryLatLng;
         state.countryZoom = action.payload.zoom
       }
     },
-    setCountriesCovid: (state, action) => {
-      state.countriesCovid = action.payload.countriesCovid
+    setCountryCovid: (state, action) => {
+      state.countryCovid = action.payload.countryCovid
     }
   },
 });
 
-export const { setCountryLatLng, setCountriesCovid } = countrySlice.actions;
+export const { setCountryLatLng, setCountryCovid } = countrySlice.actions;
 
 export const selectCountryLatLng = state => state.country.countryLatLng;
 export const selectCountryZoom = state => state.country.countryZoom;
-export const selectCountriesCovid = state => state.country.countriesCovid;
+export const selectCountryCovid = state => state.country.countryCovid;
 
 export default countrySlice.reducer;

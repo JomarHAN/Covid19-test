@@ -1,15 +1,18 @@
 import React from "react";
 import "./CardType.css";
 
-function CardType({ casesType, cases, casesTotal }) {
+function CardType({ title, cases, casesTotal, active, ...props }) {
   return (
-    <div className="cardType">
-      <h3>{casesType}</h3>
+    <div
+      className={`cardType ${active && "cardType--selected"}`}
+      onClick={props.onClick}
+    >
+      <h3>{title}</h3>
       <p>
         <strong
           className={
-            (casesType === "Recovered" && "cardType-green") ||
-            (casesType === "Deaths" && "cardType-purple")
+            (title === "Recovered" && "cardType-green") ||
+            (title === "Deaths" && "cardType-purple")
           }
         >
           +{cases}

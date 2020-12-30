@@ -7,6 +7,8 @@ import {
 import { useSelector } from "react-redux";
 import LoadCountriesTasks from "./tasks/LoadCountriesTasks";
 import Legend from "./Legend";
+import TableInfo from "./TableInfo";
+import MapHeader from "./MapHeader";
 
 function CovidMap() {
   const countryLatLng = useSelector(selectCountryLatLng);
@@ -23,6 +25,7 @@ function CovidMap() {
   return (
     countries.length > 0 && (
       <div className="app__container" style={{ height: "100vh" }}>
+        <MapHeader />
         <MapContent center={countryLatLng} zoom={zoom} countries={countries} />
         <Legend />
       </div>

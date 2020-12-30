@@ -11,7 +11,6 @@ function TableList({ listRegion }) {
           <th>Region</th>
           <th>Cases</th>
         </tr>
-
         {listRegion.map((country, index) => (
           <tr key={index}>
             <td>{index + 1}</td>

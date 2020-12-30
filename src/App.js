@@ -5,7 +5,10 @@ import TableInfo from "./TableInfo";
 
 function App() {
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={{ padding: "20px", backgroundColor: "whitesmoke" }}
+    >
       <CovidMap />
       <TableInfo />
     </div>

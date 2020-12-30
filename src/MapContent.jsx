@@ -3,9 +3,7 @@ import { MapContainer, GeoJSON, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./CovidMap.css";
 import { useDispatch } from "react-redux";
-import { setCountryLatLng } from "./features/countrySlice";
-import { LanguageOutlined } from "@material-ui/icons";
-import { IconButton } from "@material-ui/core";
+import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
 import numeral from "numeral";
 
 function MapContent({ center, zoom, countries }) {
@@ -20,7 +18,6 @@ function MapContent({ center, zoom, countries }) {
 
   const onEachCountry = (country, layer) => {
     const countryInfo = country.properties;
-
     const countryFlag = countryInfo.countryInfo?.flag;
 
     layer.bindPopup(`
@@ -37,14 +34,15 @@ function MapContent({ center, zoom, countries }) {
   };
 
   const clickEventCountry = ({ layer }) => {
-    const coordinates = layer.feature.properties.countryInfo;
-    if (coordinates) {
+    const countryInfo = layer.feature.properties.countryInfo;
+    if (countryInfo) {
       countryDispatch(
         setCountryLatLng({
-          countryLatLng: [coordinates.lat, coordinates.long],
+          countryLatLng: [countryInfo.lat, countryInfo.long],
           zoom: 4,
         })
       );
+      countryDispatch(setCountryCovid({ countryCovid: countryInfo.iso3 }));
     }
   };
 
@@ -55,7 +53,7 @@ function MapContent({ center, zoom, countries }) {
   };
 
   return (
-    <div style={{ height: "95vh", position: "relative" }} className="app__map">
+    <div style={{ height: "65vh", position: "relative" }} className="app__map">
       <MapContainer
         style={{ height: "100%" }}
         center={center}
@@ -70,12 +68,6 @@ function MapContent({ center, zoom, countries }) {
           eventHandlers={{ click: clickEventCountry }}
         />
       </MapContainer>
-      <IconButton
-        className="globe__btn"
-        onClick={() => countryDispatch(setCountryLatLng({ isGlobe: true }))}
-      >
-        <LanguageOutlined />
-      </IconButton>
     </div>
   );
 }

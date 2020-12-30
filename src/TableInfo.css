@@ -1,14 +1,7 @@
 .app__table{
     flex: 0.3;
     padding: 20px;
-}
-
-.app__cardsGroup{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    padding-right: 0;
 }
 
 
-
-/* CardType */

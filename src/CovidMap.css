@@ -7,18 +7,10 @@
 
 .leaflet-container{
     background-color: rgb(127, 229, 255);
+    border-radius: 10px;
 }
 
-.globe__btn{
-    position: fixed!important;
-    bottom: 60px;
-    left: 20px;
-    font-size: 30px!important;
-    padding: 5px!important;
-    background-color: white!important;
-    border-radius: 99%!important;
-    z-index: 10!important;
-} 
+
 
 
 /* --MapContent CSS */
@@ -34,7 +26,7 @@
 }
 
 .leaflet-popup-content p{
-    margin: 10px 0;
+    margin: 5px 0;
     font-size: medium;
 }
 
