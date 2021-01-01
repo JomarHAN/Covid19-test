@@ -6,31 +6,31 @@ const legendItems = [
         legends: [
             new LegendItem(
                 "Worst",
-                "#741f1f",
-                (cases) => cases >= 80_000,
+                "#7b0000",
+                (cases) => cases >= 50_000,
                 "white",
                 "rgba(204, 16, 52, 0.5)",
             ),
             new LegendItem(
                 "Very Servere",
-                "#9c2929",
-                (cases) => cases < 80_000 && cases >= 60_000,
+                "#d60000",
+                (cases) => cases < 50_000 && cases >= 35_000,
                 "white",
             ),
             new LegendItem(
                 "Servere",
-                "#c57f7f",
-                (cases) => cases < 60_000 && cases >= 40_000,
+                "#ff1a1a",
+                (cases) => cases < 35_000 && cases >= 20_000,
             ),
             new LegendItem(
                 "Moderate",
-                "#d8aaaa",
-                (cases) => cases < 40_000 && cases >= 20_000,
+                "#ff6565",
+                (cases) => cases < 20_000 && cases >= 5_000,
             ),
             new LegendItem(
                 "Mild",
-                "#ebd4d4",
-                (cases) => cases < 20_000 && cases > 0,
+                "#ffb3b3",
+                (cases) => cases < 5_000 && cases > 0,
             ),
 
             new LegendItem(
@@ -47,30 +47,30 @@ const legendItems = [
             new LegendItem(
                 "Worst",
                 "#460146",
-                (cases) => cases >= 20,
+                (cases) => cases >= 1_000,
                 "white",
                 "9a009a8a"
             ),
             new LegendItem(
                 "Very Servere",
                 "#6f016f",
-                (cases) => cases < 20 && cases >= 15,
+                (cases) => cases < 1_000 && cases >= 500,
                 "white",
             ),
             new LegendItem(
                 "Servere",
                 "#ea03ea",
-                (cases) => cases < 15 && cases >= 10,
+                (cases) => cases < 500 && cases >= 100,
             ),
             new LegendItem(
                 "Moderate",
                 "#ff36ff",
-                (cases) => cases < 10 && cases >= 5,
+                (cases) => cases < 100 && cases >= 50,
             ),
             new LegendItem(
                 "Mild",
                 "#ffb9ff",
-                (cases) => cases < 5 && cases > 0,
+                (cases) => cases < 50 && cases > 0,
             ),
 
             new LegendItem(
@@ -87,30 +87,30 @@ const legendItems = [
             new LegendItem(
                 "Best",
                 "#004800",
-                (cases) => cases >= 80,
+                (cases) => cases >= 30_000,
                 "white",
                 "008000ad"
             ),
             new LegendItem(
                 "Very Good",
                 "#018a01",
-                (cases) => cases < 80 && cases >= 60,
+                (cases) => cases < 30_000 && cases >= 20_000,
                 "white",
             ),
             new LegendItem(
                 "Good",
                 "#03f303",
-                (cases) => cases < 60 && cases >= 40,
+                (cases) => cases < 20_000 && cases >= 10_000,
             ),
             new LegendItem(
                 "Moderate",
                 "#66f966",
-                (cases) => cases < 40 && cases >= 20,
+                (cases) => cases < 10_000 && cases >= 5_000,
             ),
             new LegendItem(
                 "Mild",
                 "#b6f9b6",
-                (cases) => cases < 20 && cases > 0,
+                (cases) => cases < 5_000 && cases > 0,
             ),
 
             new LegendItem(

@@ -34,7 +34,7 @@ class LoadCountriesTasks {
     load = (setState, casesType) => {
         this.setState = setState
         this.casesType = casesType
-        console.log(this.casesType)
+
         fetch('https://disease.sh/v3/covid-19/countries')
             .then(res => res.json())
             .then(data => this.#processDataCovid(data))
@@ -53,48 +53,30 @@ class LoadCountriesTasks {
             this.#setRegionColor(mapCountry)
         }
         this.setState(this.mapCountries)
+
     }
 
     #setRegionColor = (mapCountry) => {
+
         if (this.casesType === 'cases') {
             const item = legendItems[0].legends.find(item => item.isFor(mapCountry.properties.casesPerOneMillion))
             if (item !== null) {
                 mapCountry.properties.color = item.color
             }
-        }
-    }
-
-
-    loadCases = (setListCases) => {
-        this.setListCases = setListCases
-        fetch('https://disease.sh/v3/covid-19/countries')
-            .then(res => res.json())
-            .then(data => this.#processDataCovidCases(data))
-            .catch(err => console.log(err))
-    }
-
-    #processDataCovidCases = (data) => {
-        for (let i = 0; i < this.mapCountries.length; i++) {
-            const mapCountry = this.mapCountries[i];
-            const covidCountry = data.find(covidCountry => covidCountry.countryInfo.iso3 === mapCountry.properties.ISO_A3)
-
-            if (covidCountry != null) {
-                mapCountry.properties = covidCountry;
+        } else if (this.casesType === 'deaths') {
+            const item = legendItems[1].legends.find(item => item.isFor(mapCountry.properties.deathsPerOneMillion))
+            if (item !== null) {
+                mapCountry.properties.color = item.color
             }
+
+        } else if (this.casesType === 'recovered') {
+            const item = legendItems[2].legends.find(item => item.isFor(mapCountry.properties.recoveredPerOneMillion))
+            if (item !== null) {
+                mapCountry.properties.color = item.color
+            }
+
         }
-
-        this.#listCasesSorted(this.mapCountries)
     }
-
-    #listCasesSorted = (mapCountries) => {
-        const list = [...mapCountries]
-        list.sort((a, b) => {
-            return a.properties.casesPerOneMillion > b.properties.casesPerOneMillion ? -1 : 1
-        })
-        return this.setListCases(list)
-    }
-
-
 }
 
 export default LoadCountriesTasks;

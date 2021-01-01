@@ -16,23 +16,12 @@ function CovidMap() {
   const [countries, setCountries] = useState([]);
   const casesType = useSelector(selectCasesType);
 
-  // const [listCases, setListCases] = useState([]);
-
-  // const loadListCases = () => {
-  //   const load = new LoadCountriesTasks();
-  //   load.loadCases(setListCases);
-  // };
-
-  // useEffect(loadListCases, []);
-
-  // console.log(listCases);
-
   const load = () => {
     const loadCountries = new LoadCountriesTasks();
     loadCountries.load(setCountries, casesType);
   };
 
-  useEffect(load, []);
+  useEffect(load, [casesType]);
 
   // console.log(countries);
 
