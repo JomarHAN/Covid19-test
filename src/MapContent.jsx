@@ -19,6 +19,7 @@ function MapContent({ center, zoom, countries }) {
   const onEachCountry = (country, layer) => {
     const countryInfo = country.properties;
     const countryFlag = countryInfo.countryInfo?.flag;
+    layer.options.fillColor = country.properties.color;
 
     layer.bindPopup(`
       <img src=${countryFlag} alt=""/>

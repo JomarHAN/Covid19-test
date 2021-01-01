@@ -6,7 +6,7 @@ class ChartDataTasks {
         fetch(countryCovid === "worldwide" ? 'https://disease.sh/v3/covid-19/historical/all?lastdays=30' : `https://disease.sh/v3/covid-19/historical/${countryCovid}?lastdays=30`)
             .then((res) => res.json())
             .then(data => {
-                if (countryCovid != 'worldwide') {
+                if (countryCovid !== 'worldwide') {
                     const countryData = data.timeline
                     this.#buildDataChart(countryData, casesType)
                 } else {
@@ -16,10 +16,9 @@ class ChartDataTasks {
     }
 
     #buildDataChart = (data, casesType) => {
-
         let chartData = [];
         let lastDataPoint = null
-        for (let date in data.cases) {
+        for (let date in data?.cases) {
             if (lastDataPoint) {
                 let newDataPoint = {
                     x: date,

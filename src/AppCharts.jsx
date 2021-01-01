@@ -6,6 +6,7 @@ import { selectCasesType } from "./features/casesTypeSlice";
 import { selectCountryCovid } from "./features/countrySlice";
 import ChartDataTasks from "./tasks/ChartDataTasks";
 import numeral from "numeral";
+import LegendItems from "./legendsData/LegendItems";
 
 const options = {
   legend: {
@@ -55,10 +56,13 @@ function AppCharts() {
   const casesType = useSelector(selectCasesType);
   const countryCovid = useSelector(selectCountryCovid);
   const [dataChart, setDataChart] = useState();
+  const [colorChart, setColorChart] = useState();
 
   const loadChartData = () => {
     const chartData = new ChartDataTasks();
     chartData.loadData(casesType, countryCovid, setDataChart);
+    const color = LegendItems.find((color) => color.type === casesType);
+    setColorChart(color);
   };
 
   useEffect(loadChartData, [casesType, countryCovid]);
@@ -70,8 +74,8 @@ function AppCharts() {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                fill: false,
+                borderColor: `${colorChart.legends[1].color}`,
                 data: dataChart,
               },
             ],

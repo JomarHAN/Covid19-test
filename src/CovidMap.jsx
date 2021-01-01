@@ -7,20 +7,34 @@ import {
 import { useSelector } from "react-redux";
 import LoadCountriesTasks from "./tasks/LoadCountriesTasks";
 import Legend from "./Legend";
-import TableInfo from "./TableInfo";
 import MapHeader from "./MapHeader";
+import { selectCasesType } from "./features/casesTypeSlice";
 
 function CovidMap() {
   const countryLatLng = useSelector(selectCountryLatLng);
   const zoom = useSelector(selectCountryZoom);
   const [countries, setCountries] = useState([]);
+  const casesType = useSelector(selectCasesType);
+
+  // const [listCases, setListCases] = useState([]);
+
+  // const loadListCases = () => {
+  //   const load = new LoadCountriesTasks();
+  //   load.loadCases(setListCases);
+  // };
+
+  // useEffect(loadListCases, []);
+
+  // console.log(listCases);
 
   const load = () => {
     const loadCountries = new LoadCountriesTasks();
-    loadCountries.load(setCountries);
+    loadCountries.load(setCountries, casesType);
   };
 
   useEffect(load, []);
+
+  // console.log(countries);
 
   return (
     countries.length > 0 && (
