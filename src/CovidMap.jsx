@@ -21,7 +21,9 @@ function CovidMap() {
     loadCountries.load(setCountries, casesType);
   };
 
-  useEffect(load, [casesType]);
+  useEffect(() => {
+    load();
+  }, [casesType]);
 
   // console.log(countries);
 

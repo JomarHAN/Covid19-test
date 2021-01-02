@@ -3,29 +3,26 @@ import CardType from "./CardType";
 import LoadCountriesTasks from "./tasks/LoadCountriesTasks";
 import numeral from "numeral";
 import "./MapHeader.css";
-import { IconButton } from "@material-ui/core";
-import { HistoryOutlined } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
+import { selectCountryCovid } from "./features/countrySlice";
 import { selectCasesType, setCasesType } from "./features/casesTypeSlice";
 
 function MapHeader() {
   const [update, setUpdate] = useState();
   const loadWorldData = new LoadCountriesTasks();
-  const countryDispatch = useDispatch();
   const casesTypeDispatch = useDispatch();
   const casesType = useSelector(selectCasesType);
+  const countryCovid = useSelector(selectCountryCovid);
 
   const load = () => {
-    loadWorldData.loadWorldData(setUpdate);
+    if (countryCovid === "worldwide") {
+      loadWorldData.loadWorldData(setUpdate);
+    } else {
+      loadWorldData.loadCountrydData(countryCovid, setUpdate);
+    }
   };
 
-  useEffect(load, []);
-
-  const backClick = () => {
-    countryDispatch(setCountryCovid({ countryCovid: "worldwide" }));
-    countryDispatch(setCountryLatLng({ isGlobe: true }));
-  };
+  useEffect(load, [countryCovid]);
 
   return (
     <div className="mapheader" style={{ height: "25vh" }}>
@@ -53,9 +50,6 @@ function MapHeader() {
           casesTotal={numeral(update?.deaths).format("0.0a")}
         />
       </div>
-      <IconButton className="globe__btn" onClick={() => backClick()}>
-        <HistoryOutlined />
-      </IconButton>
     </div>
   );
 }

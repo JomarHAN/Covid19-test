@@ -24,6 +24,13 @@ class LoadCountriesTasks {
         return listSorted;
     }
 
+    loadCountrydData = (countryCovid, setWorldData) => {
+        this.setWorldData = setWorldData
+        fetch(`https://disease.sh/v3/covid-19/countries/${countryCovid}?strict=true`)
+            .then(res => res.json())
+            .then(data => this.setWorldData(data))
+    }
+
     loadWorldData = (setWorldData) => {
         this.setWorldData = setWorldData
         fetch('https://disease.sh/v3/covid-19/all')
@@ -58,24 +65,15 @@ class LoadCountriesTasks {
 
     #setRegionColor = (mapCountry) => {
 
-        if (this.casesType === 'cases') {
-            const item = legendItems[0].legends.find(item => item.isFor(mapCountry.properties.casesPerOneMillion))
-            if (item !== null) {
-                mapCountry.properties.color = item.color
-            }
-        } else if (this.casesType === 'deaths') {
-            const item = legendItems[1].legends.find(item => item.isFor(mapCountry.properties.deathsPerOneMillion))
-            if (item !== null) {
-                mapCountry.properties.color = item.color
-            }
-
-        } else if (this.casesType === 'recovered') {
-            const item = legendItems[2].legends.find(item => item.isFor(mapCountry.properties.recoveredPerOneMillion))
-            if (item !== null) {
-                mapCountry.properties.color = item.color
-            }
-
+        const itemCases = legendItems[0].legends.find(item => item.isFor(mapCountry.properties.casesPerOneMillion))
+        const itemDeaths = legendItems[1].legends.find(item => item.isFor(mapCountry.properties.deathsPerOneMillion))
+        const itemRecovered = legendItems[2].legends.find(item => item.isFor(mapCountry.properties.recoveredPerOneMillion))
+        if (itemCases !== null || itemDeaths !== null || itemRecovered !== null) {
+            mapCountry.properties.colorCases = itemCases.color
+            mapCountry.properties.colorDeaths = itemDeaths.color
+            mapCountry.properties.colorRecovered = itemRecovered.color
         }
+
     }
 }
 

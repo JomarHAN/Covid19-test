@@ -6,25 +6,30 @@
 }
 
 .leaflet-container{
-    /* background-color: rgb(127, 229, 255); */
+    background-color: rgb(127, 229, 255);
     /* border-radius: 10px; */
 }
 
 /* --MapContent CSS */
 .leaflet-popup-content{
-    width: 200px!important;
+    width: 150px!important;
     object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .leaflet-popup-content img{
-    width: 100%;
+    width: 70%;
     border: 1px solid lightgray;
     border-radius: 10px;
 }
 
 .leaflet-popup-content p{
-    margin: 5px 0;
-    font-size: medium;
+    align-self: flex-start;
+    margin: 0;
+    font-size: 15px;
+
 }
 
 

@@ -1,0 +1,10 @@
+.globe__btn{
+    position: absolute!important;
+    right: 20px!important;
+    bottom: 20px!important;
+    font-size: 50px!important;
+    padding: 5px!important;
+    background-color: whitesmoke!important;
+    border-radius: 50px!important;
+z-index: 999;
+} 

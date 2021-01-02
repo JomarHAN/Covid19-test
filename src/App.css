@@ -1,7 +1,7 @@
-*{
-    margin: 0;
-}
+
 
 .app{
     display: flex;
+    padding: 0 20px;
+    background-color: "whitesmoke"
 }

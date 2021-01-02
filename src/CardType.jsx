@@ -15,7 +15,7 @@ function CardType({ title, cases, casesTotal, active, ...props }) {
             (title === "Deaths" && "cardType-purple")
           }
         >
-          +{cases}
+          +{cases} Today
         </strong>
       </p>
       <small>

@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { GeoJSON } from "react-leaflet";
 import { useDispatch } from "react-redux";
 import numeral from "numeral";
-import {
-  setCountryCovid,
-  setCountryLatLng,
-  setRegionHover,
-} from "./features/countrySlice";
+import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
 
-function GeoMap({ region, setHover }) {
+function GeoMapRecovered({ region, setHover }) {
   const countryDispatch = useDispatch();
-
   const mapStyle = {
     fillColor: "white",
     fillOpacity: 1,
@@ -22,10 +17,9 @@ function GeoMap({ region, setHover }) {
   const highlightFeature = (e) => {
     const layer = e.target;
     setHover(layer.feature.properties.country);
-
     layer.setStyle({
       weight: 2,
-      color: "green",
+      color: "red",
       dashArray: "",
       fillOpacity: 1,
     });
@@ -34,14 +28,14 @@ function GeoMap({ region, setHover }) {
   };
 
   const resetHighlight = (e) => {
+    setHover("Worldwide");
     e.target.setStyle({
-      fillColor: `${e.target.feature.properties.colorCases}`,
+      fillColor: `${e.target.feature.properties.colorRecovered}`,
       fillOpacity: 1,
       color: "black",
       dashArray: "",
       weight: 1,
     });
-    setHover("Worldwide");
   };
 
   const onEachCountry = (country, layer) => {
@@ -53,7 +47,8 @@ function GeoMap({ region, setHover }) {
       mouseout: resetHighlight,
     });
 
-    layer.setStyle({ fillColor: country.properties.colorCases });
+    layer.setStyle({ fillColor: countryInfo.colorRecovered });
+
     layer.bindPopup(`
     <img src=${countryFlag} alt=""/>
     <h1>${countryInfo.country}</h1>
@@ -89,4 +84,4 @@ function GeoMap({ region, setHover }) {
   );
 }
 
-export default GeoMap;
+export default GeoMapRecovered;
