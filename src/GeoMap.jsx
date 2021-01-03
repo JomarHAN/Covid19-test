@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { GeoJSON } from "react-leaflet";
 import { useDispatch } from "react-redux";
 import numeral from "numeral";
-import {
-  setCountryCovid,
-  setCountryLatLng,
-  setRegionHover,
-} from "./features/countrySlice";
+import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
 
 function GeoMap({ region, setHover }) {
   const countryDispatch = useDispatch();

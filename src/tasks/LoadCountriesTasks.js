@@ -65,6 +65,9 @@ class LoadCountriesTasks {
 
     #setRegionColor = (mapCountry) => {
 
+        // console.log(legendItems)
+        // console.log(mapCountry)
+
         const itemCases = legendItems[0].legends.find(item => item.isFor(mapCountry.properties.casesPerOneMillion))
         const itemDeaths = legendItems[1].legends.find(item => item.isFor(mapCountry.properties.deathsPerOneMillion))
         const itemRecovered = legendItems[2].legends.find(item => item.isFor(mapCountry.properties.recoveredPerOneMillion))
