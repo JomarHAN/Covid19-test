@@ -3,11 +3,10 @@ import legendItems from '../legendsData/LegendItems'
 
 class LoadCountriesTasks {
     setState = null;
-    mapCountries = features
-    setWorldData = null
-    setListCases = null
-    setCasesType = null
-
+    mapCountries = features;
+    setWorldData = null;
+    setListCases = null;
+    setCasesType = null;
 
     loadListRegion = (setListRegion) => {
         this.setListRegion = setListRegion

@@ -10,3 +10,9 @@
     justify-content: space-between;
 }
 
+.mapheader__titleAndSwitch{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

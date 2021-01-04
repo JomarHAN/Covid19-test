@@ -17,7 +17,7 @@ function TableInfo() {
   return (
     <div className="app__table">
       <div className="app__listRegion">
-        <h1>Region List</h1>
+        <h1>List of Regions</h1>
         {listRegion && <TableList listRegion={listRegion} />}
       </div>
       <div className="app__charts">

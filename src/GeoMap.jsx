@@ -1,11 +1,13 @@
 import React from "react";
 import { GeoJSON } from "react-leaflet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import numeral from "numeral";
 import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
+import { selectIsUsa } from "./features/usaSlice";
 
 function GeoMap({ region, setHover }) {
   const countryDispatch = useDispatch();
+  const isUsa = useSelector(selectIsUsa);
 
   const mapStyle = {
     fillColor: "white",
@@ -17,7 +19,12 @@ function GeoMap({ region, setHover }) {
 
   const highlightFeature = (e) => {
     const layer = e.target;
-    setHover(layer.feature.properties.country);
+    if (isUsa) {
+      setHover(layer.feature.properties.NAME);
+    } else {
+      setHover(layer.feature.properties.country);
+    }
+    // console.log(layer);
 
     layer.setStyle({
       weight: 2,
@@ -37,7 +44,12 @@ function GeoMap({ region, setHover }) {
       dashArray: "",
       weight: 1,
     });
-    setHover("Worldwide");
+
+    if (isUsa) {
+      setHover("USA");
+    } else {
+      setHover("Worldwide");
+    }
   };
 
   const onEachCountry = (country, layer) => {
