@@ -53,26 +53,27 @@ function GeoMap({ region, setHover }) {
   };
 
   const onEachCountry = (country, layer) => {
-    const countryInfo = country.properties;
-    const countryFlag = countryInfo.countryInfo?.flag;
+    if (!isUsa) {
+      const countryInfo = country.properties;
+      const countryFlag = countryInfo.countryInfo?.flag;
+      layer.bindPopup(`
+      <img src=${countryFlag} alt=""/>
+      <h1>${countryInfo.country}</h1>
+      <p>Cases: <strong>${numeral(countryInfo.cases).format("0,0")}</strong></p>
+      <p>Recovered: <strong>${numeral(countryInfo.recovered).format(
+        "0,0"
+      )}</strong></p>
+        <p>Deaths: <strong>${numeral(countryInfo.deaths).format(
+          "0,0"
+        )}</strong></p>
+          `);
+    }
 
+    layer.setStyle({ fillColor: country.properties?.colorCases });
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
     });
-
-    layer.setStyle({ fillColor: country.properties.colorCases });
-    layer.bindPopup(`
-    <img src=${countryFlag} alt=""/>
-    <h1>${countryInfo.country}</h1>
-    <p>Cases: <strong>${numeral(countryInfo.cases).format("0,0")}</strong></p>
-    <p>Recovered: <strong>${numeral(countryInfo.recovered).format(
-      "0,0"
-    )}</strong></p>
-      <p>Deaths: <strong>${numeral(countryInfo.deaths).format(
-        "0,0"
-      )}</strong></p>
-        `);
   };
 
   const clickEventCountry = ({ layer }) => {

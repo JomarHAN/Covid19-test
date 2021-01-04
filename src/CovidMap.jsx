@@ -30,7 +30,7 @@ function CovidMap() {
 
   const loadUsa = () => {
     const loadStates = new LoadUsaTasks();
-    loadStates.load(setUsStates);
+    loadStates.load(setCountries);
   };
 
   useEffect(() => {
@@ -44,22 +44,26 @@ function CovidMap() {
   // console.log(countries);
 
   return (
-    // countries.length > 0 && (
-    <div className="app__container" style={{ height: "100vh" }}>
-      <MapHeader />
-      {/* {!isUsa ? (
+    countries.length > 0 && (
+      <div className="app__container" style={{ height: "100vh" }}>
+        <MapHeader />
+        {/* {!isUsa ? (
           <MapContent
             center={countryLatLng}
             zoom={zoom}
             countries={countries}
           />
         ) : ( */}
-      <UsaMapContent usStates={usStates} usZoom={usZoom} usLatLng={usLatLng} />
-      {/* )} */}
-      <Legend />
-    </div>
+        <UsaMapContent
+          usStates={countries}
+          usZoom={usZoom}
+          usLatLng={usLatLng}
+        />
+        {/* )} */}
+        <Legend />
+      </div>
+    )
   );
-  // );
 }
 
 export default CovidMap;
