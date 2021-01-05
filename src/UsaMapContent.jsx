@@ -4,7 +4,7 @@ import GeoMap from "./GeoMap";
 
 function UsaMapContent({ usLatLng, usZoom, usStates }) {
   const [regionHover, setRegionHover] = useState("USA");
-  console.log(usStates);
+
   return (
     <div style={{ height: "70vh", position: "relative" }}>
       <MapContainer style={{ height: "100%" }} center={usLatLng} zoom={usZoom}>

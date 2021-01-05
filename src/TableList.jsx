@@ -1,11 +1,13 @@
 import React from "react";
 import numeral from "numeral";
 import "./TableList.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
+import { selectIsUsa } from "./features/usaSlice";
 
 function TableList({ listRegion }) {
   const dispatch = useDispatch();
+  const isUsa = useSelector(selectIsUsa);
 
   return (
     <div className="tableList">
@@ -15,7 +17,7 @@ function TableList({ listRegion }) {
           <th>Region</th>
           <th>Cases</th>
         </tr>
-        {listRegion.map((country, index) => (
+        {listRegion.map((region, index) => (
           <tr
             key={index}
             className="tableList__eachone"
@@ -23,18 +25,18 @@ function TableList({ listRegion }) {
               dispatch(
                 setCountryLatLng({
                   countryLatLng: [
-                    country.countryInfo.lat,
-                    country.countryInfo.long,
+                    region.countryInfo.lat,
+                    region.countryInfo.long,
                   ],
                   zoom: 4,
                 })
               );
-              dispatch(setCountryCovid({ countryCovid: country.country }));
+              dispatch(setCountryCovid({ countryCovid: region.country }));
             }}
           >
             <td>{index + 1}</td>
-            <td>{country.country}</td>
-            <td>{numeral(country.cases).format("0,0")}</td>
+            <td>{isUsa ? region.state : region.country}</td>
+            <td>{numeral(region.cases).format("0,0")}</td>
           </tr>
         ))}
       </table>

@@ -56,6 +56,7 @@ function GeoMap({ region, setHover }) {
     if (!isUsa) {
       const countryInfo = country.properties;
       const countryFlag = countryInfo.countryInfo?.flag;
+
       layer.bindPopup(`
       <img src=${countryFlag} alt=""/>
       <h1>${countryInfo.country}</h1>
