@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCasesType } from "./features/casesTypeSlice";
-import legendItems from "./legendsData/LegendItems";
+import { legendItems } from "./legendsData/LegendItems";
 
 function Legend() {
   const casesType = useSelector(selectCasesType);

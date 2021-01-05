@@ -20,7 +20,7 @@ function GeoMap({ region, setHover }) {
   const highlightFeature = (e) => {
     const layer = e.target;
     if (isUsa) {
-      setHover(layer.feature.properties.NAME);
+      setHover(layer.feature.properties.state);
     } else {
       setHover(layer.feature.properties.country);
     }

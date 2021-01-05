@@ -6,7 +6,7 @@ import { selectCasesType } from "./features/casesTypeSlice";
 import { selectCountryCovid } from "./features/countrySlice";
 import ChartDataTasks from "./tasks/ChartDataTasks";
 import numeral from "numeral";
-import LegendItems from "./legendsData/LegendItems";
+import { legendItems } from "./legendsData/LegendItems";
 
 const options = {
   legend: {
@@ -61,7 +61,7 @@ function AppCharts() {
   const loadChartData = () => {
     const chartData = new ChartDataTasks();
     chartData.loadData(casesType, countryCovid, setDataChart);
-    const color = LegendItems.find((color) => color.type === casesType);
+    const color = legendItems.find((color) => color.type === casesType);
     setColorChart(color);
   };
 

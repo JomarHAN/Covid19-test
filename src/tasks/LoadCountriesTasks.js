@@ -1,5 +1,5 @@
 import { features } from "../datajson/countries.json";
-import legendItems from '../legendsData/LegendItems'
+import { legendItems } from '../legendsData/LegendItems'
 
 class LoadCountriesTasks {
     setState = null;

@@ -5,9 +5,14 @@ class LoadUsaTasks {
     load = (setCountries) => {
         this.setUsState = setCountries
 
+
+
         fetch('https://disease.sh/v3/covid-19/states')
             .then(res => res.json())
-            .then(data => this.#processDataColor(data))
+            .then(data => {
+                this.#processDataColor(data)
+                // console.log(data)
+            })
 
     }
 
@@ -22,11 +27,11 @@ class LoadUsaTasks {
 
                 eachState.properties = stateCovid
 
-                // eachState.properties.recoveredPerOneMillion = Math.floor((stateCovid?.recovered / stateCovid?.cases) * 1_000_000)
+                eachState.properties.recoveredPerOneMillion = Math.floor((stateCovid?.recovered / stateCovid?.cases) * 1_000_000)
             }
 
         }
-        // this.setUsState(this.mapUsStates)
+        this.setUsState(this.mapUsStates)
     }
 }
 
