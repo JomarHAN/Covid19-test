@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const usaSlice = createSlice({
   name: 'usa',
   initialState: {
-    isUsa: true,
+    isUsa: false,
     usZoom: 3.5,
     usLatLng: [40, -110]
   },

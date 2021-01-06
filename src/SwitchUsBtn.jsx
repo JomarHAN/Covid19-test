@@ -25,7 +25,7 @@ const PurpleSwitch = withStyles({
 })(Switch);
 
 function ScopeBox() {
-  const [checkState, setCheckState] = useState(true);
+  const [checkState, setCheckState] = useState(false);
   const countryDispatch = useDispatch();
   const usaDispatch = useDispatch();
 

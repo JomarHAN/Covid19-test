@@ -34,11 +34,11 @@ function CovidMap() {
   };
 
   useEffect(() => {
-    // if (!isUsa) {
-    //   load();
-    // } else {
-    loadUsa();
-    // }
+    if (!isUsa) {
+      load();
+    } else {
+      loadUsa();
+    }
   }, [casesType, isUsa]);
 
   // console.log(countries);
@@ -47,19 +47,19 @@ function CovidMap() {
     countries.length > 0 && (
       <div className="app__container" style={{ height: "100vh" }}>
         <MapHeader />
-        {/* {!isUsa ? (
+        {!isUsa ? (
           <MapContent
             center={countryLatLng}
             zoom={zoom}
             countries={countries}
           />
-        ) : ( */}
-        <UsaMapContent
-          usStates={countries}
-          usZoom={usZoom}
-          usLatLng={usLatLng}
-        />
-        {/* )} */}
+        ) : (
+          <UsaMapContent
+            usStates={countries}
+            usZoom={usZoom}
+            usLatLng={usLatLng}
+          />
+        )}
         <Legend />
       </div>
     )

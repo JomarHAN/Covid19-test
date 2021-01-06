@@ -22,15 +22,16 @@ function TableList({ listRegion }) {
             key={index}
             className="tableList__eachone"
             onClick={() => {
-              dispatch(
-                setCountryLatLng({
-                  countryLatLng: [
-                    region.countryInfo.lat,
-                    region.countryInfo.long,
-                  ],
-                  zoom: 4,
-                })
-              );
+              !isUsa &&
+                dispatch(
+                  setCountryLatLng({
+                    countryLatLng: [
+                      region.countryInfo.lat,
+                      region.countryInfo.long,
+                    ],
+                    zoom: 4,
+                  })
+                );
               dispatch(setCountryCovid({ countryCovid: region.country }));
             }}
           >
