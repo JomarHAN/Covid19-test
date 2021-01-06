@@ -1,8 +1,17 @@
 import { features } from '../datajson/us-states.json'
 import { legendStates } from '../legendsData/LegendItems'
+
 class LoadUsaTasks {
     mapUsStates = features
     setUsState = null
+    setUpdate = null
+
+    loadUsCard = (setUpdate) => {
+        this.setUpdate = setUpdate
+        fetch('https://disease.sh/v3/covid-19/countries/us')
+            .then(res => res.json())
+            .then(data => this.setUpdate(data))
+    }
 
     loadListTable = (setListRegion) => {
         fetch('https://disease.sh/v3/covid-19/states')
@@ -32,18 +41,16 @@ class LoadUsaTasks {
     #processDataColor = (data) => {
         for (let i = 0; i < this.mapUsStates.length; i++) {
             const eachState = this.mapUsStates[i];
-
             const stateCovid = data.find(stateCovid => stateCovid.state === eachState.properties.NAME)
             if (stateCovid != null) {
                 eachState.properties = stateCovid
-                // eachState.properties.recoveredPerOneMillion = Math.floor((stateCovid?.recovered / stateCovid?.cases) * 1_000_000)
             }
             this.#setStateColor(eachState)
         }
-
         this.setUsState(this.mapUsStates)
-
     }
+
+
 
     #setStateColor = (eachState) => {
         const itemCases = legendStates[0].legends.find(item => item.isFor(eachState.properties.casesPerOneMillion))
@@ -56,7 +63,6 @@ class LoadUsaTasks {
             eachState.properties.colorRecovered = itemRecovered.color
         }
     }
-
 }
 
 export default LoadUsaTasks;

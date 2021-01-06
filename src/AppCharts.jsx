@@ -7,6 +7,7 @@ import { selectCountryCovid } from "./features/countrySlice";
 import ChartDataTasks from "./tasks/ChartDataTasks";
 import numeral from "numeral";
 import { legendItems } from "./legendsData/LegendItems";
+import { selectIsUsa } from "./features/usaSlice";
 
 const options = {
   legend: {
@@ -54,13 +55,18 @@ const options = {
 
 function AppCharts() {
   const casesType = useSelector(selectCasesType);
-  const countryCovid = useSelector(selectCountryCovid);
+  let countryCovid = useSelector(selectCountryCovid);
   const [dataChart, setDataChart] = useState();
   const [colorChart, setColorChart] = useState();
+  const isUsa = useSelector(selectIsUsa);
 
   const loadChartData = () => {
     const chartData = new ChartDataTasks();
-    chartData.loadData(casesType, countryCovid, setDataChart);
+    if (!isUsa) {
+      chartData.loadData(casesType, countryCovid, setDataChart);
+    } else {
+      chartData.loadData(casesType, (countryCovid = "USA"), setDataChart);
+    }
     const color = legendItems.find((color) => color.type === casesType);
     setColorChart(color);
   };
