@@ -9,8 +9,6 @@ function GeoMapRecovered({ region, setHover }) {
   const countryDispatch = useDispatch();
   const isUsa = useSelector(selectIsUsa);
 
-  console.log(region);
-
   const mapStyle = {
     fillColor: "white",
     fillOpacity: 1,
@@ -21,8 +19,14 @@ function GeoMapRecovered({ region, setHover }) {
 
   const highlightFeature = (e) => {
     const layer = e.target;
+    const regionDetail = layer.feature.properties;
     if (isUsa) {
-      setHover(layer.feature.properties.state);
+      setHover({
+        regionName: regionDetail.state,
+        regionCases: regionDetail.cases,
+        regionDeaths: regionDetail.deaths,
+        regionRecovered: regionDetail.recovered,
+      });
     } else {
       setHover(layer.feature.properties.country);
     }
@@ -75,9 +79,7 @@ function GeoMapRecovered({ region, setHover }) {
     });
 
     layer.setStyle({
-      fillColor: !isUsa
-        ? country.properties?.colorRecovered
-        : country.properties?.recovered,
+      fillColor: country.properties?.colorRecovered,
     });
   };
 

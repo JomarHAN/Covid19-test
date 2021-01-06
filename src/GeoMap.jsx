@@ -19,8 +19,14 @@ function GeoMap({ region, setHover }) {
 
   const highlightFeature = (e) => {
     const layer = e.target;
+    const regionDetail = layer.feature.properties;
     if (isUsa) {
-      setHover(layer.feature.properties.state);
+      setHover({
+        regionName: regionDetail.state,
+        regionCases: regionDetail.cases,
+        regionDeaths: regionDetail.deaths,
+        regionRecovered: regionDetail.recovered,
+      });
     } else {
       setHover(layer.feature.properties.country);
     }
@@ -46,7 +52,7 @@ function GeoMap({ region, setHover }) {
     });
 
     if (isUsa) {
-      setHover("USA");
+      setHover({ regionName: "USA" });
     } else {
       setHover("Worldwide");
     }

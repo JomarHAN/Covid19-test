@@ -34,7 +34,7 @@ class LoadUsaTasks {
             const eachState = this.mapUsStates[i];
 
             const stateCovid = data.find(stateCovid => stateCovid.state === eachState.properties.NAME)
-            if (stateCovid !== null) {
+            if (stateCovid != null) {
                 eachState.properties = stateCovid
                 // eachState.properties.recoveredPerOneMillion = Math.floor((stateCovid?.recovered / stateCovid?.cases) * 1_000_000)
             }

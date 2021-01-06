@@ -6,7 +6,7 @@ import "./MapHeader.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCountryCovid } from "./features/countrySlice";
 import { selectCasesType, setCasesType } from "./features/casesTypeSlice";
-import ScopeBox from "./ScopeBox";
+import SwitchUsBtn from "./SwitchUsBtn";
 
 function MapHeader() {
   const [update, setUpdate] = useState();
@@ -29,7 +29,7 @@ function MapHeader() {
     <div className="mapheader" style={{ height: "25vh" }}>
       <div className="mapheader__titleAndSwitch">
         <h1>COVID-19 TRACKER</h1>
-        <ScopeBox />
+        <SwitchUsBtn />
       </div>
       <div className="mapheader__cardsGroup">
         <CardType

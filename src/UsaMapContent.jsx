@@ -1,14 +1,35 @@
 import React, { useState } from "react";
 import { MapContainer } from "react-leaflet";
+import { useSelector } from "react-redux";
+import { selectCasesType } from "./features/casesTypeSlice";
 import GeoMap from "./GeoMap";
+import GeoMapDeaths from "./GeoMapDeaths";
+import GeoMapRecovered from "./GeoMapRecovered";
+import numeral from "numeral";
 
 function UsaMapContent({ usLatLng, usZoom, usStates }) {
-  const [regionHover, setRegionHover] = useState("USA");
+  const [regionHover, setRegionHover] = useState({
+    regionName: "USA",
+    regionCases: null,
+    regionDeaths: null,
+    regionRecovered: null,
+  });
+  const casesType = useSelector(selectCasesType);
 
   return (
     <div style={{ height: "70vh", position: "relative" }}>
       <MapContainer style={{ height: "100%" }} center={usLatLng} zoom={usZoom}>
-        <GeoMap region={usStates} setHover={setRegionHover} />
+        {usStates.map((usState) => {
+          if (casesType === "cases") {
+            return <GeoMap region={usState} setHover={setRegionHover} />;
+          } else if (casesType === "deaths") {
+            return <GeoMapDeaths region={usState} setHover={setRegionHover} />;
+          } else {
+            return (
+              <GeoMapRecovered region={usState} setHover={setRegionHover} />
+            );
+          }
+        })}
         <div
           style={{
             position: "absolute",
@@ -21,9 +42,35 @@ function UsaMapContent({ usLatLng, usZoom, usStates }) {
             zIndex: 999,
           }}
         >
-          <p>
-            Scope on: <strong>{regionHover}</strong>
-          </p>
+          {regionHover.regionName === "USA" ? (
+            <h4>
+              Scope on: <strong>{regionHover.regionName}</strong>
+            </h4>
+          ) : (
+            <>
+              <h4>
+                Scope on: <strong>{regionHover.regionName}</strong>
+              </h4>
+              <p>
+                Cases:{" "}
+                <strong>
+                  {numeral(regionHover.regionCases).format("0,0")}
+                </strong>
+              </p>
+              <p>
+                Deaths:{" "}
+                <strong>
+                  {numeral(regionHover.regionDeaths).format("0,0")}
+                </strong>
+              </p>
+              <p>
+                Recovered:{" "}
+                <strong>
+                  {numeral(regionHover.regionRecovered).format("0,0")}
+                </strong>
+              </p>
+            </>
+          )}
         </div>
       </MapContainer>
     </div>

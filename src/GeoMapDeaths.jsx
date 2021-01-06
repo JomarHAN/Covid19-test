@@ -1,11 +1,14 @@
 import React from "react";
 import { GeoJSON } from "react-leaflet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import numeral from "numeral";
 import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
+import { selectIsUsa } from "./features/usaSlice";
 
 function GeoMapDeaths({ region, setHover }) {
   const countryDispatch = useDispatch();
+  const isUsa = useSelector(selectIsUsa);
+
   const mapStyle = {
     fillColor: "white",
     fillOpacity: 1,
@@ -16,7 +19,18 @@ function GeoMapDeaths({ region, setHover }) {
 
   const highlightFeature = (e) => {
     const layer = e.target;
-    setHover(layer.feature.properties.country);
+    const regionDetail = layer.feature.properties;
+    if (isUsa) {
+      setHover({
+        regionName: regionDetail.state,
+        regionCases: regionDetail.cases,
+        regionDeaths: regionDetail.deaths,
+        regionRecovered: regionDetail.recovered,
+      });
+    } else {
+      setHover(layer.feature.properties.country);
+    }
+
     layer.setStyle({
       weight: 2,
       color: "yellow",
@@ -28,7 +42,6 @@ function GeoMapDeaths({ region, setHover }) {
   };
 
   const resetHighlight = (e) => {
-    setHover("Worldwide");
     e.target.setStyle({
       fillColor: `${e.target.feature.properties.colorDeaths}`,
       fillOpacity: 1,
@@ -36,30 +49,37 @@ function GeoMapDeaths({ region, setHover }) {
       dashArray: "",
       weight: 1,
     });
+
+    if (isUsa) {
+      setHover({ regionName: "USA" });
+    } else {
+      setHover("Worldwide");
+    }
   };
 
   const onEachCountry = (country, layer) => {
-    const countryInfo = country.properties;
-    const countryFlag = countryInfo.countryInfo?.flag;
+    if (!isUsa) {
+      const countryInfo = country.properties;
+      const countryFlag = countryInfo.countryInfo?.flag;
 
+      layer.bindPopup(`
+      <img src=${countryFlag} alt=""/>
+      <h1>${countryInfo.country}</h1>
+      <p>Cases: <strong>${numeral(countryInfo.cases).format("0,0")}</strong></p>
+      <p>Recovered: <strong>${numeral(countryInfo.recovered).format(
+        "0,0"
+      )}</strong></p>
+        <p>Deaths: <strong>${numeral(countryInfo.deaths).format(
+          "0,0"
+        )}</strong></p>
+          `);
+    }
+
+    layer.setStyle({ fillColor: country.properties?.colorDeaths });
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
     });
-
-    layer.setStyle({ fillColor: countryInfo.colorDeaths });
-
-    layer.bindPopup(`
-    <img src=${countryFlag} alt=""/>
-    <h1>${countryInfo.country}</h1>
-    <p>Cases: <strong>${numeral(countryInfo.cases).format("0,0")}</strong></p>
-    <p>Recovered: <strong>${numeral(countryInfo.recovered).format(
-      "0,0"
-    )}</strong></p>
-      <p>Deaths: <strong>${numeral(countryInfo.deaths).format(
-        "0,0"
-      )}</strong></p>
-        `);
   };
 
   const clickEventCountry = ({ layer }) => {
