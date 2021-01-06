@@ -23,8 +23,6 @@ function TableInfo() {
 
   useEffect(load, [isUsa]);
 
-  console.log(listRegion);
-
   return (
     <div className="app__table">
       <div className="app__listRegion">
