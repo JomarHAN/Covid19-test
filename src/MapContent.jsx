@@ -24,7 +24,7 @@ function MapContent({ center, zoom, countries }) {
   };
 
   const backClick = () => {
-    countryDispatch(setCountryCovid({ countryCovid: "worldwide" }));
+    countryDispatch(setCountryCovid({ countryCovid: "Worldwide" }));
     countryDispatch(setCountryLatLng({ isGlobe: true }));
   };
 

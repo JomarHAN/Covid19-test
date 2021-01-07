@@ -25,7 +25,7 @@ function MapHeader() {
   };
 
   const load = () => {
-    if (countryCovid === "worldwide") {
+    if (countryCovid === "Worldwide") {
       loadWorldData.loadWorldData(setUpdate);
     } else {
       loadWorldData.loadCountrydData(countryCovid, setUpdate);

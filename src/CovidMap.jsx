@@ -30,7 +30,7 @@ function CovidMap() {
 
   const loadUsa = () => {
     const loadStates = new LoadUsaTasks();
-    loadStates.load(setCountries);
+    loadStates.load(setUsStates);
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function CovidMap() {
           />
         ) : (
           <UsaMapContent
-            usStates={countries}
+            usStates={usStates}
             usZoom={usZoom}
             usLatLng={usLatLng}
           />

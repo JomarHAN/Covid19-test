@@ -2,6 +2,16 @@
     flex: 0.3;
     padding: 20px;
     padding-right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.app__listRegion{
+    flex: 0.6;
+}
+
+.app__charts{
+    flex: 0.4;
 }
 
 

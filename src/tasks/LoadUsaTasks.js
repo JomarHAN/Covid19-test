@@ -3,7 +3,7 @@ import { legendStates } from '../legendsData/LegendItems'
 
 class LoadUsaTasks {
     mapUsStates = features
-    setUsState = null
+    setUsStates = null
     setUpdate = null
 
     loadUsCard = (setUpdate) => {
@@ -29,8 +29,8 @@ class LoadUsaTasks {
         return statesList
     }
 
-    load = (setCountries) => {
-        this.setUsState = setCountries
+    load = (setUsStates) => {
+        this.setUsStates = setUsStates
         fetch('https://disease.sh/v3/covid-19/states')
             .then(res => res.json())
             .then(data =>
@@ -47,7 +47,7 @@ class LoadUsaTasks {
             }
             this.#setStateColor(eachState)
         }
-        this.setUsState(this.mapUsStates)
+        this.setUsStates(this.mapUsStates)
     }
 
 

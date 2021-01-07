@@ -71,26 +71,30 @@ function AppCharts() {
     setColorChart(color);
   };
 
-  useEffect(loadChartData, [casesType, countryCovid]);
+  useEffect(loadChartData, [casesType, countryCovid, isUsa]);
 
   return (
-    <div className="lineChart">
-      <h1>{countryCovid}</h1>
-      <h3>{casesType}</h3>
-      {dataChart?.length > 0 && (
-        <Line
-          data={{
-            datasets: [
-              {
-                fill: false,
-                borderColor: `${colorChart.legends[1].color}`,
-                data: dataChart,
-              },
-            ],
-          }}
-          options={options}
-        />
-      )}
+    <div className="appChart">
+      <div className="appChart__header">
+        <h1>{!isUsa ? countryCovid : "USA"}</h1>
+        <h3>{casesType.toUpperCase()}</h3>
+      </div>
+      <div className="appChart__chart">
+        {dataChart?.length > 0 && (
+          <Line
+            data={{
+              datasets: [
+                {
+                  fill: false,
+                  borderColor: `${colorChart.legends[1].color}`,
+                  data: dataChart,
+                },
+              ],
+            }}
+            options={options}
+          />
+        )}
+      </div>
     </div>
   );
 }

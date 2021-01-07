@@ -3,10 +3,10 @@ class ChartDataTasks {
 
     loadData = (casesType, countryCovid, setDataChart) => {
         this.setDataChart = setDataChart
-        fetch(countryCovid === "worldwide" ? 'https://disease.sh/v3/covid-19/historical/all?lastdays=30' : `https://disease.sh/v3/covid-19/historical/${countryCovid}?lastdays=30`)
+        fetch(countryCovid === "Worldwide" ? 'https://disease.sh/v3/covid-19/historical/all?lastdays=30' : `https://disease.sh/v3/covid-19/historical/${countryCovid}?lastdays=30`)
             .then((res) => res.json())
             .then(data => {
-                if (countryCovid !== 'worldwide') {
+                if (countryCovid !== 'Worldwide') {
                     const countryData = data.timeline
                     this.#buildDataChart(countryData, casesType)
                 } else {

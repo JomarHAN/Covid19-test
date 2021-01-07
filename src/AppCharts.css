@@ -1,0 +1,11 @@
+.appChart__header{
+    margin-bottom: 20px;
+}
+
+.chartjs-render-monitor{
+    height: 100%!important;
+}
+
+.appChart__chart{
+    height: 150px;
+}

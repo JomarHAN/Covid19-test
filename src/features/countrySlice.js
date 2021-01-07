@@ -5,7 +5,7 @@ export const countrySlice = createSlice({
   initialState: {
     countryLatLng: [50, 0],
     countryZoom: 1.7,
-    countryCovid: "worldwide",
+    countryCovid: "Worldwide",
     regionHover: "Worldwide"
   },
   reducers: {
