@@ -86,19 +86,20 @@ function GeoMap({ region, setHover }) {
 
   const clickEventCountry = ({ layer }) => {
     const countryInfo = layer.feature.properties;
+    if (!isUsa) {
+      if (countryInfo) {
+        countryDispatch(
+          setCountryLatLng({
+            countryLatLng: [
+              countryInfo.countryInfo.lat,
+              countryInfo.countryInfo.long,
+            ],
+            zoom: 4,
+          })
+        );
 
-    if (countryInfo) {
-      countryDispatch(
-        setCountryLatLng({
-          countryLatLng: [
-            countryInfo.countryInfo.lat,
-            countryInfo.countryInfo.long,
-          ],
-          zoom: 4,
-        })
-      );
-
-      countryDispatch(setCountryCovid({ countryCovid: countryInfo.country }));
+        countryDispatch(setCountryCovid({ countryCovid: countryInfo.country }));
+      }
     }
   };
   return (

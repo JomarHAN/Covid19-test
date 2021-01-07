@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MapContainer, useMap } from "react-leaflet";
+import { MapContainer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./CovidMap.css";
 import GeoMap from "./GeoMap";
@@ -7,15 +7,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCasesType } from "./features/casesTypeSlice";
 import GeoMapDeaths from "./GeoMapDeaths";
 import GeoMapRecovered from "./GeoMapRecovered";
-import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
+import {
+  selectCountryCovid,
+  setCountryCovid,
+  setCountryLatLng,
+} from "./features/countrySlice";
 import { IconButton } from "@material-ui/core";
-import { LanguageOutlined } from "@material-ui/icons";
+import { Explore } from "@material-ui/icons";
 import "./MapContent.css";
+import L from "leaflet";
+import heart from "./390px-Map_marker.svg.png";
 
 function MapContent({ center, zoom, countries }) {
   const casesType = useSelector(selectCasesType);
   const [regionHover, setRegionHover] = useState("Worldwide");
   const countryDispatch = useDispatch();
+  const countryCovid = useSelector(selectCountryCovid);
+
+  const iconPerson = new L.Icon({
+    iconUrl: heart,
+    iconRetinaUrl: heart,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(30, 35),
+    className: "leaflet-div-icon",
+  });
 
   const FlyTo = () => {
     const map = useMap();
@@ -37,7 +56,6 @@ function MapContent({ center, zoom, countries }) {
         scrollWheelZoom={false}
       >
         <FlyTo />
-
         {countries.map((region) => {
           if (casesType === "cases") {
             return <GeoMap region={region} setHover={setRegionHover} />;
@@ -49,8 +67,11 @@ function MapContent({ center, zoom, countries }) {
             );
           }
         })}
+        {countryCovid !== "Worldwide" && (
+          <Marker position={center} icon={iconPerson} />
+        )}
         <IconButton className="globe__btn" onClick={() => backClick()}>
-          <LanguageOutlined />
+          <Explore />
         </IconButton>
 
         <div
