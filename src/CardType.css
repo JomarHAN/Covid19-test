@@ -38,3 +38,27 @@
 .cardType-purple{
     color: purple;
 }
+
+@media only screen and (max-width: 1024px){
+    .cardType{
+        padding: 5px 0 5px 15px;
+        margin: 5px 0;
+    }
+
+    .cardType p{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: red;
+        font-weight: 600!important;
+        font-size: 16px!important;
+    }
+
+    .cardType h3{
+        font-size: 18px;
+    }
+
+    .cardType small strong{
+        font-size: 13px!important;
+        font-weight: 700!important;
+    }
+}

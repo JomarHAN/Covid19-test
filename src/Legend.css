@@ -1,0 +1,14 @@
+.legend{
+    height: 5vh;
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+.legend__child{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}

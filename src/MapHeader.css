@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    height: 20vh;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .mapheader__cardsGroup{

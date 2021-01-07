@@ -1,4 +1,8 @@
-
+.app__map{
+    height: 75vh;
+    position: relative;
+    box-sizing: border-box;
+}
 
 .globe__btn{
     position: absolute!important;
@@ -8,7 +12,7 @@
     padding: 5px!important;
     background-color: whitesmoke!important;
     border-radius: 50px!important;
-z-index: 999;
+    z-index: 999;
 } 
 
 .leaflet-div-icon{

@@ -41,7 +41,7 @@ function MapHeader() {
   }, [countryCovid, isUsa]);
 
   return (
-    <div className="mapheader" style={{ height: "25vh" }}>
+    <div className="mapheader">
       <div className="mapheader__titleAndSwitch">
         <h1>COVID-19 TRACKER</h1>
         <SwitchUsBtn />

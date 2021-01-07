@@ -2,6 +2,16 @@
 
 .app{
     display: flex;
-    padding: 0 20px;
-    background-color: "whitesmoke"
+    padding: 20px 20px;
+    background-color: "whitesmoke";
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px){
+    .app{
+        position: relative;
+        width: 100vw;
+        padding: 0;
+    }
 }

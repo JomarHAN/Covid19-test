@@ -24,8 +24,6 @@ function MapContent({ center, zoom, countries }) {
   const countryDispatch = useDispatch();
   const countryCovid = useSelector(selectCountryCovid);
 
-  console.log(countryCovid);
-
   const iconPerson = new L.Icon({
     iconUrl: heart,
     iconRetinaUrl: heart,
@@ -50,7 +48,7 @@ function MapContent({ center, zoom, countries }) {
   };
 
   return (
-    <div style={{ height: "70vh", position: "relative" }} className="app__map">
+    <div className="app__map">
       <MapContainer
         style={{ height: "100%" }}
         center={center}

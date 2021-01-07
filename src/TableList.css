@@ -4,7 +4,7 @@
     color: #6a5d5d;
     background-color: white;
     overflow: scroll;
-    height: 500px;
+    height: 450px;
 }
 
 .tableList td, .tableList th{
@@ -24,3 +24,4 @@
     color: black;
     box-shadow: 0 0 1px 1px;
 }
+

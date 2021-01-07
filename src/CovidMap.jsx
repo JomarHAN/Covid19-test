@@ -45,7 +45,7 @@ function CovidMap() {
 
   return (
     countries.length > 0 && (
-      <div className="app__container" style={{ height: "100vh" }}>
+      <div className="app__container">
         <MapHeader />
         {!isUsa ? (
           <MapContent

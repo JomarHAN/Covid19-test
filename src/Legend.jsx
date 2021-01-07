@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCasesType } from "./features/casesTypeSlice";
 import { legendItems } from "./legendsData/LegendItems";
+import "./Legend.css";
 
 function Legend() {
   const casesType = useSelector(selectCasesType);
@@ -15,19 +16,14 @@ function Legend() {
   useEffect(changeLegend, [casesType]);
 
   return (
-    <div style={{ height: "5vh", display: "flex", alignItems: "stretch" }}>
+    <div className="legend">
       {legends?.map((legend) => (
         <div
           key={legend.title}
+          className="legend__child"
           style={{
-            flex: 1,
-            height: "5vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             color: legend.textColor,
             backgroundColor: legend.color,
-            fontWeight: "bolder",
           }}
         >
           <span>{legend.title}</span>

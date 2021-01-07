@@ -8,6 +8,7 @@ import { blue } from "@material-ui/core/colors";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setIsUsa } from "./features/usaSlice";
+import "./SwitchUsBtn.css";
 
 const PurpleSwitch = withStyles({
   switchBase: {
@@ -40,16 +41,7 @@ function ScopeBox() {
   }, [checkState]);
 
   return (
-    <div
-      style={{
-        right: "10px",
-        top: "10px",
-        border: "1px solid lightgray",
-        padding: "5px",
-        backgroundColor: "lightgray",
-        borderRadius: "5px",
-      }}
-    >
+    <div className="switchUsBtn">
       <FormGroup>
         <FormControlLabel
           control={
