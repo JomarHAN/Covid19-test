@@ -75,6 +75,8 @@ function AppCharts() {
 
   return (
     <div className="lineChart">
+      <h1>{countryCovid}</h1>
+      <h3>{casesType}</h3>
       {dataChart?.length > 0 && (
         <Line
           data={{
