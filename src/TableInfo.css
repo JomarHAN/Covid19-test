@@ -7,11 +7,20 @@
 }
 
 .app__listRegion{
-    flex: 0.6;
+    flex: 0.7;
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .app__charts{
-    flex: 0.4;
+    flex: 0.3;
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
 
 

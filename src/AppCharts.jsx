@@ -76,8 +76,10 @@ function AppCharts() {
   return (
     <div className="appChart">
       <div className="appChart__header">
-        <h1>{!isUsa ? countryCovid : "USA"}</h1>
-        <h3>{casesType.toUpperCase()}</h3>
+        <h2>
+          {!isUsa ? countryCovid : "USA"}:{" "}
+          <small>{casesType.toUpperCase()}</small>
+        </h2>
       </div>
       <div className="appChart__chart">
         {dataChart?.length > 0 && (
