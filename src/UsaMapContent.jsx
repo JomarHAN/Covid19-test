@@ -17,7 +17,7 @@ function UsaMapContent({ usLatLng, usZoom, usStates }) {
   const casesType = useSelector(selectCasesType);
 
   return (
-    <div style={{ height: "70vh", position: "relative" }}>
+    <div className="app__map">
       <MapContainer style={{ height: "100%" }} center={usLatLng} zoom={usZoom}>
         {usStates.map((usState) => {
           if (casesType === "cases") {

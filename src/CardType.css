@@ -42,7 +42,7 @@
 @media only screen and (max-width: 1024px){
     .cardType{
         padding: 5px 0 5px 15px;
-        margin: 5px 0;
+        margin: 2px 0;
     }
 
     .cardType p{
@@ -60,5 +60,24 @@
     .cardType small strong{
         font-size: 13px!important;
         font-weight: 700!important;
+    }
+}
+
+@media only screen and (max-width: 375px){
+
+    .cardType p{
+        margin-top: 5px;
+        margin-bottom: 0px;
+        color: red;
+        font-weight: 500!important;
+        font-size: 10px!important;
+    }
+
+    .cardType h3{
+        font-size: 12px;
+    }
+
+    .cardType small strong,.cardType small{
+        font-size: 10px!important;
     }
 }

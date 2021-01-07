@@ -4,3 +4,11 @@
     background-color: lightgray;
     border-radius: 5px;
 }
+
+@media only screen and (max-width: 375px){
+    .switchUsBtn {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+}
