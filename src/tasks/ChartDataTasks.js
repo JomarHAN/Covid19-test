@@ -10,23 +10,24 @@ class ChartDataTasks {
                     const countryData = data.timeline
                     this.#buildDataChart(countryData, casesType)
                 } else {
-                    this.#buildDataChart(data, casesType)
+                    const countryData = data
+                    this.#buildDataChart(countryData, casesType)
                 }
             })
     }
 
-    #buildDataChart = (data, casesType) => {
+    #buildDataChart = (countryData, casesType) => {
         let chartData = [];
         let lastDataPoint = null
-        for (let date in data?.cases) {
+        for (let date in countryData?.cases) {
             if (lastDataPoint) {
                 let newDataPoint = {
                     x: date,
-                    y: data[casesType][date] - lastDataPoint
+                    y: countryData[casesType][date] - lastDataPoint
                 }
                 chartData.push(newDataPoint)
             }
-            lastDataPoint = data[casesType][date]
+            lastDataPoint = countryData[casesType][date]
         }
 
         this.setDataChart(chartData)

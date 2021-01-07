@@ -33,7 +33,7 @@ function GeoMap({ region, setHover }) {
     // console.log(layer);
 
     layer.setStyle({
-      weight: 2,
+      weight: 3,
       color: "green",
       dashArray: "",
       fillOpacity: 1,
@@ -77,6 +77,7 @@ function GeoMap({ region, setHover }) {
     }
 
     layer.setStyle({ fillColor: country.properties?.colorCases });
+
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
@@ -85,6 +86,7 @@ function GeoMap({ region, setHover }) {
 
   const clickEventCountry = ({ layer }) => {
     const countryInfo = layer.feature.properties;
+
     if (countryInfo) {
       countryDispatch(
         setCountryLatLng({

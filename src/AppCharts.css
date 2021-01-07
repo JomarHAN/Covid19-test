@@ -4,8 +4,10 @@
 
 .chartjs-render-monitor{
     height: 100%!important;
+    width: 100%!important;
 }
 
 .appChart__chart{
     height: 150px;
+    width: 100%;
 }

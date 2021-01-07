@@ -32,7 +32,7 @@ function GeoMapDeaths({ region, setHover }) {
     }
 
     layer.setStyle({
-      weight: 2,
+      weight: 3,
       color: "yellow",
       dashArray: "",
       fillOpacity: 1,

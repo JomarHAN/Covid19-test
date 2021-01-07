@@ -7,7 +7,6 @@ import {
 import { blue } from "@material-ui/core/colors";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCountryCovid, setCountryLatLng } from "./features/countrySlice";
 import { setIsUsa } from "./features/usaSlice";
 
 const PurpleSwitch = withStyles({
@@ -26,7 +25,6 @@ const PurpleSwitch = withStyles({
 
 function ScopeBox() {
   const [checkState, setCheckState] = useState(false);
-  const countryDispatch = useDispatch();
   const usaDispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -38,8 +36,6 @@ function ScopeBox() {
       usaDispatch(setIsUsa({ isUsa: true }));
     } else {
       usaDispatch(setIsUsa({ isUsa: false }));
-      countryDispatch(setCountryLatLng({ countryLatLng: [50, 0], zoom: 1.7 }));
-      // countryDispatch(setCountryCovid("Worldwide"));
     }
   }, [checkState]);
 

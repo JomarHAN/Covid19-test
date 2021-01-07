@@ -31,7 +31,7 @@ function GeoMapRecovered({ region, setHover }) {
       setHover(layer.feature.properties.country);
     }
     layer.setStyle({
-      weight: 2,
+      weight: 3,
       color: "red",
       dashArray: "",
       fillOpacity: 1,
