@@ -24,6 +24,8 @@ function MapContent({ center, zoom, countries }) {
   const countryDispatch = useDispatch();
   const countryCovid = useSelector(selectCountryCovid);
 
+  console.log(countryCovid);
+
   const iconPerson = new L.Icon({
     iconUrl: heart,
     iconRetinaUrl: heart,
