@@ -13,7 +13,7 @@ function TableList({ listRegion }) {
     <div className="tableList">
       <table>
         <tr>
-          <th>Level</th>
+          <th>#</th>
           <th>Region</th>
           <th>Cases</th>
         </tr>

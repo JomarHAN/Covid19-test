@@ -14,7 +14,7 @@ function GeoMapDeaths({ region, setHover }) {
     fillOpacity: 1,
     color: "black",
     weight: 1,
-    dashArray: "3",
+    dashArray: null,
   };
 
   const highlightFeature = (e) => {
