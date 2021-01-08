@@ -8,6 +8,7 @@ import { selectIsUsa } from "./features/usaSlice";
 import LoadUsaStasks from "./tasks/LoadUsaTasks";
 import { ArrowForwardIos } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import Loading from "./Loading";
 
 function TableInfo() {
   const [listRegion, setListRegion] = useState([]);
@@ -49,7 +50,7 @@ function TableInfo() {
       </div>
       <div className="app__listRegion">
         <h1>List of Regions</h1>
-        {listRegion && <TableList listRegion={listRegion} />}
+        {listRegion === 0 ? <Loading /> : <TableList listRegion={listRegion} />}
       </div>
       <div className="app__charts">
         <AppCharts />

@@ -8,6 +8,7 @@ import ChartDataTasks from "./tasks/ChartDataTasks";
 import numeral from "numeral";
 import { legendItems } from "./legendsData/LegendItems";
 import { selectIsUsa } from "./features/usaSlice";
+import Loading from "./Loading";
 
 const options = {
   legend: {
@@ -82,13 +83,15 @@ function AppCharts() {
         </h2>
       </div>
       <div className="appChart__chart">
-        {dataChart?.length > 0 && (
+        {dataChart?.length === 0 ? (
+          <Loading />
+        ) : (
           <Line
             data={{
               datasets: [
                 {
                   fill: false,
-                  borderColor: `${colorChart.legends[1].color}`,
+                  borderColor: `${colorChart?.legends[1].color}`,
                   data: dataChart,
                 },
               ],

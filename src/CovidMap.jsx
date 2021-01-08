@@ -12,6 +12,7 @@ import { selectCasesType } from "./features/casesTypeSlice";
 import { selectIsUsa, selectUsLatLng, selectUsZoom } from "./features/usaSlice";
 import UsaMapContent from "./UsaMapContent";
 import LoadUsaTasks from "./tasks/LoadUsaTasks";
+import Loading from "./Loading";
 
 function CovidMap() {
   const countryLatLng = useSelector(selectCountryLatLng);
@@ -44,25 +45,29 @@ function CovidMap() {
   // console.log(countries);
 
   return (
-    countries.length > 0 && (
-      <div className="app__container">
-        <MapHeader />
-        {!isUsa ? (
-          <MapContent
-            center={countryLatLng}
-            zoom={zoom}
-            countries={countries}
-          />
-        ) : (
-          <UsaMapContent
-            usStates={usStates}
-            usZoom={usZoom}
-            usLatLng={usLatLng}
-          />
-        )}
-        <Legend />
-      </div>
-    )
+    <div className="app__container">
+      {countries.length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          <MapHeader />
+          {!isUsa ? (
+            <MapContent
+              center={countryLatLng}
+              zoom={zoom}
+              countries={countries}
+            />
+          ) : (
+            <UsaMapContent
+              usStates={usStates}
+              usZoom={usZoom}
+              usLatLng={usLatLng}
+            />
+          )}
+          <Legend />
+        </>
+      )}
+    </div>
   );
 }
 
